@@ -24,12 +24,29 @@ table(database_landspitali$ECG_post_ANY)
 table(database_landspitali$ECG_pre_AF_any)
 
 # 3. 
-#   30-day: 363
+#   30-day: 3230 n, 363 y
 table(database_landspitali$ECG_post_AF_30day - database_landspitali$ECG_pre_AF_any)
 
-#   90-day:
-variable90day <- ifelse(database_landspitali$ECG_post_AF_any_d <91, 1, 0)
+#   90-day: 11746 n, 2073 y
+variable90day <- ifelse(database_landspitali$ECG_post_AF_any_d <91, 3, 0)
 table(variable90day - database_landspitali$ECG_pre_AF_any)
-summary(database_landspitali$ECG_post_AF_any_d)
 
-barplot(table(database_landspitali$ECG_post_AF_any_d), xlim=c(0,300), ylim=c(0,100))
+#   Unlim:  12057 n, 2802 y
+table(database_landspitali$ECG_post_AF_any - database_landspitali$ECG_pre_AF_any)
+
+#######################################################################################################
+# Table 1 - Incidence
+
+database_landspitali %>% mutate(database_landspitali$ECG_post_AF_30day,
+                         ifelse(database_landspitali$BigClass == "Neurosurgery_major", 1, 0))
+
+
+
+
+
+
+
+
+
+
+
