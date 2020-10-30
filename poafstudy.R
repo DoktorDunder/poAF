@@ -39,38 +39,15 @@ table(database_landspitali$ECG_post_AF_any - database_landspitali$ECG_pre_AF_any
 # Table 1 - Incidence
 # comp90 = 90day AF excluding pre-AF - 3= yes , 2= no, 1
 
-# Major Neurosurgery
-table(comp90day, database_landspitali$BigClass)
-barplot(table(comp90day))
-variableneuro <- ifelse(database_landspitali$BigClass == "Neurosurgery_major", 5, 0)
-test <- database_landspitali$ECG_post_30day
-levels(test) <- c(0,3)
-table(database_landspitali$ECG_post_AF_30day)
+
 poafcompvar <- database_landspitali$ECG_post_AF_30day(ifelse(ECG_post_AF_30day==0,))
 comp30day <- (database_landspitali$ECG_post_AF_30day - database_landspitali$ECG_pre_AF_any)
 table(comp30day)
 
-
-table(variableneuro, comp30day)
-
 comp90day <- (variable90day - database_landspitali$ECG_pre_AF_any)
-table(variableneuro)
-table(comp90day)
-table(database_landspitali$BigClass)
-table(comp90day, variableneuro)
-table(database_landspitali$BigClass,database_landspitali$ECG_post_AF_any)
-
 compall <- (database_landspitali$ECG_post_AF_any - database_landspitali$ECG_pre_AF_any)
 
-table(compall,variableneuro)
-table(compall, database_landspitali$BigClass)
-table(comp30day, database_landspitali$BigClass)
 
-
-table(compday, database_landspitali)
-
-
-table(database_landspitali$ECG_pre_AF_any, database_landspitali$BigClass, database_landspitali$ECG_post_AF_any)
 
 x <- ftable(database_landspitali$ECG_pre_AF_any, database_landspitali$BigClass, database_landspitali$ECG_post_AF_any, 
             dnn = c("Preaf", "Surg", "Poaf"))
